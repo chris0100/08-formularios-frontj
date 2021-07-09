@@ -18,7 +18,6 @@ export class ReactiveComponent implements OnInit {
     this.crearFormulario();
     this.cargarDataAlFormulario();
     this.crearListeners();
-
   }
 
   ngOnInit(): void {
@@ -71,7 +70,7 @@ export class ReactiveComponent implements OnInit {
       nombre  : ['', [ Validators.required, Validators.minLength(5) ]  ],
       apellido: ['', [Validators.required, this.validadores.noHerrera ] ],
       correo  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
-      usuario : ['', , this.validadores.existeUsuario ],
+      usuario : ['', this.validadores.existeUsuario ],
       pass1   : ['', Validators.required ],
       pass2   : ['', Validators.required ],
       direccion: this.fb.group({
@@ -79,7 +78,7 @@ export class ReactiveComponent implements OnInit {
         ciudad  : ['', Validators.required ],
       }),
       pasatiempos: this.fb.array([])
-    },{
+    }, {
       validators: this.validadores.passwordsIguales('pass1', 'pass2')
     });
 
@@ -134,8 +133,6 @@ export class ReactiveComponent implements OnInit {
         } else {
           control.markAsTouched();
         }
-
-
       });
 
     }
